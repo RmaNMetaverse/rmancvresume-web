@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, Globe, Linkedin, Music, Moon, Sun, Printer, MapPin } from 'lucide-react';
+import profileImg from '../public/profile.jpg';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -41,7 +42,7 @@ export default function App() {
               <div className="flex flex-col items-center mb-8">
                 <div className={`w-40 h-40 rounded-full overflow-hidden border-4 mb-4 ${darkMode ? 'border-blue-500/30' : 'border-blue-100'} shadow-inner flex items-center justify-center bg-gray-200`}>
                   <img 
-                    src="/profile.jpg" 
+                    src={profileImg} 
                     alt="Arman Jangmiri" 
                     className="w-full h-full object-cover"
                   />
