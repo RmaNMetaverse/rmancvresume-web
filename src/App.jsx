@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, Globe, Linkedin, Music, Moon, Sun, Printer, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Phone, Linkedin, Moon, Sun, Printer, MapPin } from 'lucide-react';
 import profileImg from '../public/profile.jpg';
 
 export default function App() {
@@ -57,10 +57,8 @@ export default function App() {
               <div className="mb-10 space-y-4 text-sm">
                 <ContactItem icon={<Phone size={18} />} text="+989124150452" darkMode={darkMode} />
                 <ContactItem icon={<Mail size={18} />} text="RmaN.Metaverse@Gmail.com" darkMode={darkMode} />
-                <ContactItem icon={<MapPin size={18} />} text="Tehran, Iran" darkMode={darkMode} />
-                <ContactItem icon={<Globe size={18} />} text="Live Website" darkMode={darkMode} />
-                <ContactItem icon={<Linkedin size={18} />} text="LinkedIn Profile" darkMode={darkMode} />
-                <ContactItem icon={<Music size={18} />} text="Soundcloud / Spotify" darkMode={darkMode} />
+                <ContactItem icon={<MapPin size={18} />} text="Tehran, Iran" darkMode={darkMode} />    
+                <ContactItem icon={<Linkedin size={18} />} text="LinkedIn Profile" darkMode={darkMode} />                
               </div>
 
               {/* About Me */}
@@ -91,11 +89,11 @@ export default function App() {
               <div className="mb-10 page-break-inside-avoid">
                 <SidebarHeading title="Tools" darkMode={darkMode} />
                 <ul className={`text-sm space-y-2 list-disc list-inside ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  <li>Unreal Engine / Blender</li>
-                  <li>Game Engines & 3D Software</li>
-                  <li>Music Production + Sound Design</li>
-                  <li>ComfyUI & GenAI</li>
-                  <li>Web Dev (JS, Nodejs, WordPress, Python)</li>
+                  <li>Web Dev/Tool Dev (JS, Python, PHP, WordPress)</li>              
+                  <li>Game Engines & 3D Software (Unreal,Unity,Blender,C4D)</li>
+                  <li>Music Production + Sound Design (Ableton,Cubase)</li>
+                  <li>GenAI (ComfyUI,Higgsfield,Google Flow,...)</li>
+                  
                 </ul>
               </div>
 
@@ -103,7 +101,7 @@ export default function App() {
               <div className="page-break-inside-avoid">
                 <SidebarHeading title="Languages" darkMode={darkMode} />
                 <p className={`text-sm mb-6 ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  Farsi (Native) • English • German • Chinese (Mandarin)
+                  Farsi (Native) • English • German • Turkish • Chinese (Mandarin)
                 </p>
                 
                 <SidebarHeading title="Interests" darkMode={darkMode} />
@@ -124,7 +122,23 @@ export default function App() {
                   <h2 className="text-3xl font-bold tracking-wider uppercase">Tech Experience</h2>
                 </div>
 
+
+
                 <div className="space-y-8">
+                  <ExperienceItem 
+                    year="2013 - 2017 & 2026"
+                    title="Web App Development / Web Design"
+                    company="@itdprose & @Moses VP | Tehran, Iran"
+                    description={<>
+                      <strong>Front-End:</strong> Tailwind,Threejs,Javascript/jQuery, WordPress<br/>
+                      <strong>Backend:</strong> Node.js/Express, Nginx, PHP<br/>
+                      <strong>Database:</strong> Oracle PLSQL/Oracle, Postgres, MySQL, SQLite<br/>
+                      <strong>Host:</strong> Linux (Debian Based), sysadmin<br/>
+                      <strong>Vibe Coding/Agentic Dev:</strong> Claude Code, Codex, Antigravity
+                    </>}
+                    darkMode={darkMode}
+                  />                
+
                   <ExperienceItem 
                     year="2022 - 2026"
                     title="Unreal Engine Virtual Production"
@@ -137,25 +151,23 @@ export default function App() {
                   />
 
                   <ExperienceItem 
+                    year="2024 - 2026"
+                    title="GenAI & AI Content Creator"
+                    company="@MosesVP, @Freelancing"
+                    description={<>
+                      <strong>Platform/Tools:</strong> ComfyUI, Higgsfield, Google Flow, Adobe Firefly<br/>
+                      <strong>Models:</strong> Seedance, Veo, Kling,...<br/>                    
+                    </>}
+                    darkMode={darkMode}
+                  />
+
+                  <ExperienceItem 
                     year="2017 - 2018 & 2026"
                     title="Technical Writer / Tech Support"
                     company="@Coiniran (Remote) & @MosesVP (On-Site)"
                     description={<>
                       <strong>Coiniran:</strong> Blockchain, cryptocurrency & web 3.0 R&D technical writing, articles, guides & tutorials.<br/>
                       <strong>MosesVP:</strong> Tech support for custom-developed internal Asset Manager tool + Implementing.
-                    </>}
-                    darkMode={darkMode}
-                  />
-
-                  <ExperienceItem 
-                    year="2013 - 2017 & 2026"
-                    title="Web App Development / Web Design"
-                    company="@itdprose & @Moses VP | Tehran, Iran"
-                    description={<>
-                      <strong>Front-End:</strong> Javascript/jQuery, WordPress<br/>
-                      <strong>Backend:</strong> Node.js/Express, Nginx, PHP<br/>
-                      <strong>Database:</strong> Oracle PLSQL/Oracle, Postgres, MySQL<br/>
-                      <strong>Host:</strong> Linux (Debian Based)
                     </>}
                     darkMode={darkMode}
                   />
