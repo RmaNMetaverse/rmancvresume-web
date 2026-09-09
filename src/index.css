@@ -33,6 +33,10 @@
     break-inside: avoid; 
     page-break-inside: avoid; 
   }
+  a[href] {
+    color: #2563eb !important;
+    text-decoration: underline !important;
+  }
   @page { 
     margin: 1cm; 
     size: A4; 

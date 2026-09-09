@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Moon, Sun, Printer, MapPin } from 'lucide-react';
+import { Mail, Phone, Linkedin, Youtube, Moon, Sun, Printer, MapPin } from 'lucide-react';
 import profileImg from '../public/profile.jpg';
 
 export default function App() {
@@ -55,17 +55,18 @@ export default function App() {
 
               {/* Contact Info */}
               <div className="mb-10 space-y-4 text-sm">
-                <ContactItem icon={<Phone size={18} />} text="+989124150452" darkMode={darkMode} />
-                <ContactItem icon={<Mail size={18} />} text="RmaN.Metaverse@Gmail.com" darkMode={darkMode} />
+                <ContactItem icon={<Phone size={18} />} text="+989124150452" href="tel:+989124150452" darkMode={darkMode} />
+                <ContactItem icon={<Mail size={18} />} text="RmaN.Metaverse@Gmail.com" href="mailto:RmaN.Metaverse@Gmail.com" darkMode={darkMode} />
                 <ContactItem icon={<MapPin size={18} />} text="Tehran, Iran" darkMode={darkMode} />    
-                <ContactItem icon={<Linkedin size={18} />} text="LinkedIn Profile" darkMode={darkMode} />                
+                <ContactItem icon={<Linkedin size={18} />} text="LinkedIn Profile" href="https://linkedin.com/in/armanjangmiri" darkMode={darkMode} />
+                <ContactItem icon={<Youtube size={18} />} text="YouTube Channel" href="https://YouTube.com/RmaNYouTube" darkMode={darkMode} />
               </div>
 
               {/* About Me */}
               <div className="mb-10 page-break-inside-avoid">
                 <SidebarHeading title="About Me" darkMode={darkMode} />
                 <p className={`text-sm leading-relaxed ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  Creative technologist, creating interactive worlds through 3D, Game Dev, Web Development, Programming, Virtual Mixed Reality, and Design, Production, Music/Sound. 
+                  Arman Jangmiri, Born in 1990. Creative technologist, creating interactive worlds through 3D, Game Dev, Web Development, Programming, Virtual Mixed Reality, and Design, Production, Music/Sound. 
                   <br/><br/>
                   Fascinated at the crossroads where modern technology meets modern art. Constantly learning new tech tools and bringing imaginative concepts to life.
                 </p>
@@ -225,12 +226,35 @@ export default function App() {
 }
 
 // Sub-components for cleaner code
-const ContactItem = ({ icon, text, darkMode }) => (
-  <div className={`flex items-center gap-3 ${darkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-    <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{icon}</span>
-    <span>{text}</span>
-  </div>
-);
+const ContactItem = ({ icon, text, href, darkMode }) => {
+  const content = (
+    <>
+      <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{icon}</span>
+      <span>{text}</span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <div className="flex items-center">
+        <a 
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex items-center gap-3 transition-colors hover:text-blue-500 hover:underline ${darkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-700 hover:text-blue-600'}`}
+        >
+          {content}
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`flex items-center gap-3 ${darkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+      {content}
+    </div>
+  );
+};
 
 const SidebarHeading = ({ title, darkMode }) => (
   <h3 className={`text-lg font-bold uppercase tracking-wider mb-4 border-b pb-2 print-heading ${darkMode ? 'border-slate-700 text-slate-200' : 'border-gray-200 text-gray-800'}`}>
