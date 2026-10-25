@@ -1,282 +1,84 @@
-import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Youtube, Moon, Sun, Printer, MapPin } from 'lucide-react';
-import profileImg from '../public/profile.jpg';
-
-export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const handlePrint = () => {
-    window.print();
-  };
-
-  return (
-    <div className={`min-h-screen transition-colors duration-300 font-sans ${darkMode ? 'bg-slate-900 text-slate-200' : 'bg-gray-50 text-gray-900'}`}>
-      
-      {/* Floating Action Buttons (Hidden on Print) */}
-      <div className="fixed top-6 right-6 flex gap-3 no-print z-50">
-        <button 
-          onClick={handlePrint}
-          className={`p-3 rounded-full shadow-lg transition-transform hover:scale-110 ${darkMode ? 'bg-slate-800 text-blue-400 border border-slate-700' : 'bg-white text-blue-600 border border-gray-200'}`}
-          title="Print / Save as PDF"
-        >
-          <Printer size={20} />
-        </button>
-        <button 
-          onClick={() => setDarkMode(!darkMode)}
-          className={`p-3 rounded-full shadow-lg transition-transform hover:scale-110 ${darkMode ? 'bg-slate-800 text-yellow-400 border border-slate-700' : 'bg-white text-slate-800 border border-gray-200'}`}
-          title="Toggle Theme"
-        >
-          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-      </div>
-
-      <div className="max-w-6xl mx-auto p-4 md:p-8 lg:py-12">
-        <div className={`shadow-2xl overflow-hidden print-border ${darkMode ? 'bg-slate-800 shadow-slate-900/50' : 'bg-white shadow-gray-200/50'}`}>
-          
-          <div className="flex flex-col md:flex-row">
-            
-            {/* LEFT SIDEBAR */}
-            <div className={`md:w-1/3 p-8 md:p-10 ${darkMode ? 'bg-slate-800/80' : 'bg-gray-50'}`}>
-              
-              {/* Profile Image & Name */}
-              <div className="flex flex-col items-center mb-8">
-                <div className={`w-40 h-40 rounded-full overflow-hidden border-4 mb-4 ${darkMode ? 'border-blue-500/30' : 'border-blue-100'} shadow-inner flex items-center justify-center bg-gray-200`}>
-                  <img 
-                    src={profileImg} 
-                    alt="Arman Jangmiri" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h1 className="text-3xl font-extrabold tracking-tight text-center uppercase print-heading">Arman Jangmiri</h1>
-                <h2 className={`text-lg font-medium mt-2 tracking-widest text-center uppercase ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
-                  Creative Technologist
-                </h2>
-              </div>
-
-              {/* Contact Info */}
-              <div className="mb-10 space-y-4 text-sm">
-                <ContactItem icon={<Phone size={18} />} text="+989124150452" href="tel:+989124150452" darkMode={darkMode} />
-                <ContactItem icon={<Mail size={18} />} text="RmaN.Metaverse@Gmail.com" href="mailto:RmaN.Metaverse@Gmail.com" darkMode={darkMode} />
-                <ContactItem icon={<MapPin size={18} />} text="Tehran, Iran" darkMode={darkMode} />    
-                <ContactItem icon={<Linkedin size={18} />} text="LinkedIn Profile" href="https://linkedin.com/in/armanjangmiri" darkMode={darkMode} />
-                <ContactItem icon={<Youtube size={18} />} text="YouTube Channel" href="https://YouTube.com/RmaNYouTube" darkMode={darkMode} />
-              </div>
-
-              {/* About Me */}
-              <div className="mb-10 page-break-inside-avoid">
-                <SidebarHeading title="About Me" darkMode={darkMode} />
-                <p className={`text-sm leading-relaxed ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  Arman Jangmiri, Born in 1990. Creative technologist, creating interactive worlds through 3D, Game Dev, Web Development, Programming, Virtual Mixed Reality, and Design, Production, Music/Sound. 
-                  <br/><br/>
-                  Fascinated at the crossroads where modern technology meets modern art. Constantly learning new tech tools and bringing imaginative concepts to life.
-                </p>
-              </div>
-
-              {/* Skills */}
-              <div className="mb-10 page-break-inside-avoid">
-                <SidebarHeading title="Skills" darkMode={darkMode} />
-                <div className="flex flex-wrap gap-2">
-                  <SkillTag text="Virtual Production" darkMode={darkMode} />
-                  <SkillTag text="VR / AR / MR" darkMode={darkMode} />
-                  <SkillTag text="Prompt Engineering" darkMode={darkMode} />
-                  <SkillTag text="Agentic Development" darkMode={darkMode} />
-                  <SkillTag text="Network" darkMode={darkMode} />
-                  <SkillTag text="Web Design (WordPress)" darkMode={darkMode} />
-                  <SkillTag text="Git / Version Control" darkMode={darkMode} />
-                </div>
-              </div>
-
-              {/* Tools */}
-              <div className="mb-10 page-break-inside-avoid">
-                <SidebarHeading title="Tools" darkMode={darkMode} />
-                <ul className={`text-sm space-y-2 list-disc list-inside ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  <li>Web Dev/Tool Dev (JS, Python, PHP, WordPress)</li>              
-                  <li>Game Engines & 3D Software (Unreal,Unity,Blender,C4D)</li>
-                  <li>Music Production + Sound Design (Ableton,Cubase)</li>
-                  <li>GenAI (ComfyUI,Higgsfield,Google Flow,...)</li>
-                  
-                </ul>
-              </div>
-
-              {/* Languages & Interests */}
-              <div className="page-break-inside-avoid">
-                <SidebarHeading title="Languages" darkMode={darkMode} />
-                <p className={`text-sm mb-6 ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  Farsi (Native) • English • German • Turkish • Chinese (Mandarin)
-                </p>
-                
-                <SidebarHeading title="Interests" darkMode={darkMode} />
-                <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                  Technology • Science • Gaming • Cinema • Electronic Music
-                </p>
-              </div>
-
-            </div>
-
-            {/* RIGHT MAIN CONTENT */}
-            <div className="md:w-2/3 p-8 md:p-10 md:border-l border-gray-200 dark:border-slate-700">
-              
-              {/* TECH Section */}
-              <div className="mb-12">
-                <div className="flex items-center gap-4 mb-8 print-heading">
-                  <div className={`h-8 w-2 ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
-                  <h2 className="text-3xl font-bold tracking-wider uppercase">Tech Experience</h2>
-                </div>
-
-
-
-                <div className="space-y-8">
-                  <ExperienceItem 
-                    year="2013 - 2017 & 2026"
-                    title="Web App Development / Web Design"
-                    company="@itdprose & @Moses VP | Tehran, Iran"
-                    description={<>
-                      <strong>Front-End:</strong> Tailwind,Threejs,Javascript/jQuery, WordPress<br/>
-                      <strong>Backend:</strong> Node.js/Express, Nginx, PHP<br/>
-                      <strong>Database:</strong> Oracle PLSQL/Oracle, Postgres, MySQL, SQLite<br/>
-                      <strong>Host:</strong> Linux (Debian Based), sysadmin<br/>
-                      <strong>Vibe Coding/Agentic Dev:</strong> Claude Code, Codex, Antigravity
-                    </>}
-                    darkMode={darkMode}
-                  />                
-
-                  <ExperienceItem 
-                    year="2022 - 2026"
-                    title="Unreal Engine Virtual Production"
-                    company="@IRIB, @VCast, @RASTAR | Tehran, Iran"
-                    description={<>
-                      LED-Wall ICVFX technician for Moses Project. Role: Virtual Production Technician, Live Camera Tracking (MoSys). Developing custom blueprints & Tools.<br/>
-                      Green Screen Virtual Production Technician @RASTAR, setting up first fully Green Screen Virtual Production Studio Setup.
-                    </>}
-                    darkMode={darkMode}
-                  />
-
-                  <ExperienceItem 
-                    year="2024 - 2026"
-                    title="GenAI & AI Content Creator"
-                    company="@MosesVP, @Freelancing"
-                    description={<>
-                      <strong>Platform/Tools:</strong> ComfyUI, Higgsfield, Google Flow, Adobe Firefly<br/>
-                      <strong>Models:</strong> Seedance, Veo, Kling,...<br/>                    
-                    </>}
-                    darkMode={darkMode}
-                  />
-
-                  <ExperienceItem 
-                    year="2017 - 2018 & 2026"
-                    title="Technical Writer / Tech Support"
-                    company="@Coiniran (Remote) & @MosesVP (On-Site)"
-                    description={<>
-                      <strong>Coiniran:</strong> Blockchain, cryptocurrency & web 3.0 R&D technical writing, articles, guides & tutorials.<br/>
-                      <strong>MosesVP:</strong> Tech support for custom-developed internal Asset Manager tool + Implementing.
-                    </>}
-                    darkMode={darkMode}
-                  />
-                </div>
-              </div>
-
-              {/* ART Section */}
-              <div>
-                <div className="flex items-center gap-4 mb-8 mt-12 print-heading page-break-inside-avoid">
-                  <div className={`h-8 w-2 ${darkMode ? 'bg-purple-500' : 'bg-purple-600'}`}></div>
-                  <h2 className="text-3xl font-bold tracking-wider uppercase">Art Experience</h2>
-                </div>
-
-                <div className="space-y-8">
-                  <ExperienceItem 
-                    year="2022 - 2023"
-                    title="Unreal Engine 3D Artist"
-                    company="@VCast | Tehran, Iran"
-                    description="Environment Design, Texturing, custom materials, Lighting & Rendering for Unreal Engine Short Cinematics & TV Series."
-                    darkMode={darkMode}
-                  />
-
-                  <ExperienceItem 
-                    year="2020 - 2022 + 2024 - 2025"
-                    title="3D Render Artist & AI Artist"
-                    company="@Freelance / Personal"
-                    description="Making abstract 3D Art & Renders, for personal projects, freelance customers & NFTs in Cinema4D & Blender. Making AI Art & Videos with ComfyUI & Online AI Tools."
-                    darkMode={darkMode}
-                  />
-
-                  <ExperienceItem 
-                    year="2018 - 2022"
-                    title="Music Producer / Sound Designer"
-                    company="@Iran Novin"
-                    description="Making Custom Music/Sound Design for Visual Media (Logomotion, Motion Graphics, TV/Radio Advertisements)."
-                    darkMode={darkMode}
-                  />
-
-                  <ExperienceItem 
-                    year="2014 - 2022"
-                    title="Music Producer"
-                    company="@Personal"
-                    description="Making & releasing personal electronic music under 'RmaN'. Ending music for BBC Persian's Click special end of the year's episode (Nowrooz 1400)."
-                    darkMode={darkMode}
-                  />
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+import React, { useEffect, useState } from 'react';
+import { ArrowUpRight, ArrowDown, Printer, Pause, Play, Code2, Orbit, AudioLines, Mail, Phone, MapPin, Linkedin, Youtube, Github, Instagram, Check, Copy } from 'lucide-react';
+import Sculpture from './Sculpture';
+import { logoUrl, socialProfiles } from './brand';
+const socialIcons = { github: Github, instagram: Instagram };
+import { experience, disciplines } from './data';
+const email = 'RmaN.Metaverse@Gmail.com';
+const filters = ['All experience', 'Engineering', 'Art & media', 'Writing & support'];
+function PrintResume() {
+  return <div className="print-resume">
+    {[0, 1].map(page => <section className="paper" key={page}>
+      <header className="paper-header">
+        <div className="paper-identity"><div className="eyebrow paper-brand"><img src={logoUrl} alt="RmaN logo" /> RmaN / CURRICULUM VITAE</div><h1>Arman Jangmiri<span>.</span></h1><p>Creative technologist · Developer<br />Interactive media artist</p></div>
+        <div className="paper-visual">{page === 0 ? <img className="paper-portrait" src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Arman Jangmiri" /> : <img className="paper-logo-emblem" src={logoUrl} alt="RmaN logo" />}<span className="paper-index">0{page + 1} / 02</span></div>
+      </header>
+      <div className="paper-disciplines"><span><Code2 aria-hidden="true" /> ENGINEERING</span><span><Orbit aria-hidden="true" /> REAL-TIME WORLDS</span><span><AudioLines aria-hidden="true" /> ART & SOUND</span></div>
+      {page === 0 ? <><div className="paper-contact"><a href={`mailto:${email}`}><Mail aria-hidden="true" />{email}</a><a href="tel:+989124150452"><Phone aria-hidden="true" />+98 912 415 0452</a><span><MapPin aria-hidden="true" />Tehran, Iran</span></div><p className="paper-summary">Creative technologist working across full-stack development, real-time 3D, virtual production, generative media, and sound. Combining technical implementation with visual storytelling, infrastructure administration, technical writing, and hands-on support.</p><h2><Code2 aria-hidden="true" />01 / Engineering, production & support</h2></> : <><div className="paper-contact"><a href="https://linkedin.com/in/armanjangmiri"><Linkedin aria-hidden="true" />linkedin.com/in/armanjangmiri</a><a href="https://YouTube.com/RmaNYouTube"><Youtube aria-hidden="true" />youtube.com/RmaNYouTube</a>{socialProfiles.map(profile => { const Icon = socialIcons[profile.icon]; return <a key={profile.name} href={profile.url}><Icon aria-hidden="true" />{profile.label}</a>; })}</div><h2><Orbit aria-hidden="true" />02 / Art, media & sound</h2></>}
+      {(page === 0 ? experience.filter(x => x.type !== 'Art & media') : experience.filter(x => x.type === 'Art & media')).map(x => <article className="paper-job" key={x.title}><div className="paper-job-heading"><h3>{x.title}</h3><span>{x.date}</span></div><div className="paper-company">{x.company}{x.location && ` · ${x.location}`}</div><p>{x.description} {x.details}</p></article>)}
+      {page === 0 ? <div className="paper-skills"><h2>Technical toolkit</h2><p><b>Development & infrastructure</b> / JavaScript, Python, PHP, Node.js, Express, WordPress, Tailwind, Three.js, SQL, Nginx, Linux, networking, Git.</p><p><b>Real-time & production</b> / Unreal Engine, Unity, Blueprints, Mo-Sys, ICVFX, virtual production, VR / AR / MR.</p><p><b>AI-assisted workflows</b> / Prompt engineering, agentic development, Claude Code, Codex, Antigravity.</p></div> : <div className="paper-skills"><h2>Creative toolkit & languages</h2><p><b>Creative tools</b> / Blender, Cinema 4D, Ableton, Cubase, ComfyUI, Higgsfield, Google Flow, Adobe Firefly.</p><p><b>Languages</b> / Farsi (native), English, German, Turkish.</p><p><b>Interests</b> / Technology, science, gaming, cinema, electronic music.</p></div>}
+      <footer className="paper-footer"><span>ARMAN JANGMIRI / CREATIVE TECHNOLOGIST</span><span className="paper-footer-brand"><img src={logoUrl} alt="" /> ART × TECHNOLOGY × PEOPLE</span></footer>
+    </section>)}
+  </div>;
 }
-
-// Sub-components for cleaner code
-const ContactItem = ({ icon, text, href, darkMode }) => {
-  const content = (
-    <>
-      <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>{icon}</span>
-      <span>{text}</span>
-    </>
-  );
-
-  if (href) {
-    return (
-      <div className="flex items-center">
-        <a 
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`inline-flex items-center gap-3 transition-colors hover:text-blue-500 hover:underline ${darkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-700 hover:text-blue-600'}`}
-        >
-          {content}
-        </a>
-      </div>
-    );
+export default function App() {
+  const [filter, setFilter] = useState(filters[0]);
+  const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [mode, setMode] = useState(0);
+  const [discovered, setDiscovered] = useState([0]);
+  const [copied, setCopied] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [active, setActive] = useState('about');
+  useEffect(() => {
+    const scroll = () => setProgress(window.scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight));
+    window.addEventListener('scroll', scroll, {
+      passive: true
+    });
+    scroll();
+    const observer = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) setActive(e.target.id);
+    }), {
+      rootMargin: '-15% 0px -55% 0px'
+    });
+    document.querySelectorAll('main section[id]').forEach(el => observer.observe(el));
+    return () => {
+      window.removeEventListener('scroll', scroll);
+      observer.disconnect();
+    };
+  }, []);
+  const changeMode = next => {
+    setMode(next);
+    setDiscovered(old => [...new Set([...old, next])]);
+  };
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      window.location.href = `mailto:${email}`;
+    }
   }
+  return <><div className={`site ${paused ? 'motion-paused' : ''}`}>
+    <a className="skip-link" href="#experience">Skip to experience</a>
+    <div className="scroll-progress" style={{
+        transform: `scaleX(${progress})`
+      }} />
+    <header className="navigation"><a className="wordmark" href="#about" aria-label="RmaN, back to top"><img className="brand-logo" src={logoUrl} alt="RmaN logo" /><span className="wordmark-caption">ART / CODE / EXPERIENCE</span></a><nav aria-label="Main navigation">{[['about', 'About'], ['experience', 'Experience'], ['practice', 'Practice'], ['contact', 'Contact']].map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined}>{label}</a>)}</nav><button className="nav-print" onClick={() => window.print()}><Printer size={15} /><span>Print résumé</span><ArrowUpRight size={14} /></button></header>
+    <main>
+      <section id="about" className="about-section wrap section-space" aria-labelledby="human-heading"><div className="portrait"><img src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Arman Jangmiri" fetchPriority="high" /><span>THE HUMAN BEHIND THE SYSTEMS ↗</span></div><div className="about-copy"><div className="eyebrow">01 / ALWAYS EXPLORING</div><p className="profile-name">ARMAN JANGMIRI / CREATIVE TECHNOLOGIST</p><h2 id="human-heading">Curiosity is<br />my <span className="serif">operating system.</span></h2><p>I’m fascinated by the place where modern technology meets modern art. Whether I’m creating an interactive world, debugging a tool, writing a guide, or shaping a sound, I’m looking for new ways to turn an idea into something people can experience.</p><div className="about-facts"><div><h3>LANGUAGES</h3><p>Farsi <span>(native)</span> · English · German<br />Turkish</p></div><div><h3>OUTSIDE THE WORK</h3><p>Technology · Science · Gaming<br />Cinema · Electronic music</p></div></div></div></section>
+      <section id="creative" className="hero wrap"><div className="hero-copy"><div className="eyebrow"><span className="status-dot" /> BETWEEN ART & TECHNOLOGY</div><h1>Creative mind.<br />Technical <span className="serif">soul.</span></h1><div className="intro"><span className="intro-rule" /><p>I’m <strong>Arman Jangmiri</strong>, a creative technologist.<br />I build the systems, worlds, and experiences<br className="desktop-break" /> where imagination becomes interactive.</p></div><div className="hero-actions"><a href="#experience" className="button primary">Explore my experience <ArrowDown size={17} /></a><a href={`mailto:${email}`} className="text-link">Let’s connect <ArrowUpRight size={17} /></a></div><div className="hero-footnote"><MapPin size={13} /> TEHRAN, IRAN <span>·</span> WORKING ACROSS DISCIPLINES</div></div>
+      <div className="experiment"><div className="experiment-top"><span>EXPERIMENT 001 / EXTRUDED IDENTITY</span><span className="live-label"><i /> LIVE</span></div><div className="sculpture"><div className="orbit-ring ring-one" /><div className="orbit-ring ring-two" /><Sculpture paused={paused} mode={mode} onShift={() => changeMode((mode + 1) % 3)} /><span className="axis axis-top">Y +</span><span className="axis axis-bottom">X +</span><div className="sculpture-caption"><span>FORM {String(mode + 1).padStart(2, '0')}</span><strong>{['Identity', 'Relief', 'Ultraviolet'][mode]}</strong></div></div><div className="experiment-controls"><div className="shape-buttons" role="group" aria-label="Logo sculpture style">{['01', '02', '03'].map((n, i) => <button key={n} aria-label={`Show form ${n}`} aria-pressed={mode === i} onClick={() => changeMode(i)}>{n}</button>)}</div><span className="experiment-hint" aria-live="polite">{discovered.length === 3 ? 'ALL FORMS DISCOVERED ✓' : 'MOVE TO EXPLORE · CLICK TO SHIFT'}</span><button className="icon-button" aria-label={paused ? 'Resume motion' : 'Pause motion'} onClick={() => setPaused(!paused)}>{paused ? <Play size={16} /> : <Pause size={16} />}</button></div></div>
+      <div className="hero-bottom"><span>ENGINEER BY LOGIC. ARTIST BY INSTINCT.</span><a href="#experience">SCROLL TO DISCOVER <ArrowDown size={14} /></a></div></section>
+      <div className="discipline-strip" aria-label="Disciplines"><span>CREATIVE DEVELOPMENT</span><i>✳</i><span>REAL-TIME 3D</span><i>✳</i><span>VIRTUAL PRODUCTION</span><i>✳</i><span>GENERATIVE MEDIA</span><i>✳</i><span>SOUND DESIGN</span></div>
 
-  return (
-    <div className={`flex items-center gap-3 ${darkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-      {content}
-    </div>
-  );
-};
+      <section id="experience" className="experience-section wrap section-space"><div className="section-heading"><div className="eyebrow">02 / THE JOURNEY</div><h2>A career across<br /><span className="serif">worlds.</span></h2><p>Development. Production. Art. Sound.<br />The common thread is bringing ideas to life.</p></div><div className="experience-toolbar"><div className="filters" role="group" aria-label="Filter experience">{filters.map(f => <button key={f} aria-pressed={filter === f} onClick={() => setFilter(f)}>{f}{f === filters[0] && <span>08</span>}</button>)}</div><span className="result-count" aria-live="polite">{filter === filters[0] ? '08' : String(experience.filter(x => x.type === filter).length).padStart(2, '0')} ENTRIES</span></div><div className="timeline">{experience.filter(x => filter === filters[0] || x.type === filter).map(x => <article className="experience-row" key={x.title}><div className="experience-meta"><span className="date">{x.date}</span><span className={`category category-${x.type === 'Art & media' ? 'art' : 'tech'}`}>{x.type}</span></div><div className="experience-body"><div className="job-heading"><h3>{x.title}</h3><span className="job-arrow" aria-hidden="true">↗</span></div><div className="company">{x.company}{x.location && <span> / {x.location}</span>}</div><p>{x.description}</p>{x.details && <details><summary>Role details <span>+</span></summary><p>{x.details}</p></details>}<div className="tags">{x.tags.map(t => <span key={t}>{t}</span>)}</div></div></article>)}</div></section>
+      <section id="practice" className="practice wrap section-space"><div className="section-heading"><div className="eyebrow">03 / THE PRACTICE</div><h2>Different disciplines.<br /><span className="muted">One curious mind.</span></h2><p>From a line of code to a world on screen.<br />I connect creative ambition with the technical<br className="desktop-break" /> craft that makes it work.</p></div><div className="practice-grid">{disciplines.map((d, i) => {
+              const Icon = [Code2, Orbit, AudioLines][i];
+              return <article className="practice-card" key={d.number}><div className="card-top"><Icon size={27} strokeWidth={1.3} /><span>{d.number}</span></div><h3>{d.title}</h3><p>{d.text}</p><div className="tool-list">{d.tools}</div></article>;
+            })}</div></section>
 
-const SidebarHeading = ({ title, darkMode }) => (
-  <h3 className={`text-lg font-bold uppercase tracking-wider mb-4 border-b pb-2 print-heading ${darkMode ? 'border-slate-700 text-slate-200' : 'border-gray-200 text-gray-800'}`}>
-    {title}
-  </h3>
-);
-
-const SkillTag = ({ text, darkMode }) => (
-  <span className={`text-xs font-medium px-3 py-1.5 rounded-md ${darkMode ? 'bg-slate-700/50 text-slate-300' : 'bg-gray-200 text-gray-700'}`}>
-    {text}
-  </span>
-);
-
-const ExperienceItem = ({ year, title, company, description, darkMode }) => (
-  <div className="relative pl-6 border-l-2 border-gray-300 dark:border-slate-600 page-break-inside-avoid">
-    <div className={`absolute w-3 h-3 rounded-full -left-[7px] top-1.5 ${darkMode ? 'bg-blue-500' : 'bg-blue-600'} no-print`} />
-    
-    <div className={`text-sm font-bold mb-1 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>{year}</div>
-    <h4 className="text-xl font-bold mb-1">{title}</h4>
-    <div className={`text-sm font-semibold mb-3 ${darkMode ? 'text-slate-400' : 'text-gray-500'}`}>{company}</div>
-    <p className={`text-sm leading-relaxed ${darkMode ? 'text-slate-300' : 'text-gray-600'} print-text-sm`}>
-      {description}
-    </p>
-  </div>
-);
+      <section id="contact" className="contact-section wrap"><div className="eyebrow">04 / START A CONVERSATION</div><h2>Have something<br /><span className="serif">in mind?</span> <ArrowUpRight aria-hidden="true" /></h2><div className="contact-bottom"><div><p>Let’s connect art, technology, and a good idea.</p><a className="email-link" href={`mailto:${email}`}>{email} <ArrowUpRight size={20} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={14} /> : <Copy size={14} />}<span aria-live="polite">{copied ? 'Copied to clipboard' : 'Copy email'}</span></button></div><div className="social-links">{socialProfiles.map(profile => { const Icon = socialIcons[profile.icon]; return <a key={profile.name} href={profile.url} target="_blank" rel="noreferrer"><Icon size={17} />{profile.name}<ArrowUpRight size={15} /></a>; })}<a href="https://linkedin.com/in/armanjangmiri" target="_blank" rel="noreferrer"><Linkedin size={17} />LinkedIn<ArrowUpRight size={15} /></a><a href="https://YouTube.com/RmaNYouTube" target="_blank" rel="noreferrer"><Youtube size={17} />YouTube<ArrowUpRight size={15} /></a><a href="tel:+989124150452">+98 912 415 0452<ArrowUpRight size={15} /></a></div></div></section>
+    </main><footer className="site-footer wrap"><a className="wordmark" href="#about"><img className="brand-logo" src={logoUrl} alt="RmaN logo" /></a><span>CREATIVE TECHNOLOGIST / ARMAN JANGMIRI</span><a href="#about">BACK TO TOP ↑</a></footer>
+  </div><PrintResume /></>;
+}

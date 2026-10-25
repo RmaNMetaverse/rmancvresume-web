@@ -1,236 +1,44 @@
-# Arman Jangmiri - Interactive Resume
+# RmaN — Creative technologist résumé
 
-A modern, responsive resume website built with React, Tailwind CSS, and Vite.
+A static React / Vite résumé for Arman Jangmiri. Dark editorial screen design, interactive software-rendered 3D particle sculpture, experience filters, accessible motion controls, and a dedicated two-page A4 print layout.
 
-## 📋 Features
-- ✨ Dark/Light mode toggle
-- 🖨️ Print to PDF functionality
-- 📱 Fully responsive design
-- 🚀 Offline-first (no CDN dependencies)
-- ⚡ Lightning-fast build with Vite
+## Run locally
 
-## 🏗️ Project Structure
+Requires Node.js 22 and npm.
 
-```
-rman-resume/
-├── src/
-│   ├── main.jsx          # React entry point
-│   ├── App.jsx           # Main resume component
-│   └── index.css         # Tailwind + print styles
-├── index.html            # HTML template
-├── package.json          # Dependencies
-├── vite.config.js        # Vite configuration
-├── tailwind.config.js    # Tailwind configuration
-├── postcss.config.js     # PostCSS configuration
-└── dist/                 # Built files (generated)
-```
-
-## 🔧 Tech Stack
-
-| Technology | Purpose |
-|-----------|---------|
-| **React 18** | UI framework |
-| **Vite** | Build tool (10x faster than Webpack) |
-| **Tailwind CSS** | Utility-first CSS framework |
-| **lucide-react** | Beautiful icons |
-| **PostCSS** | CSS processing |
-
-## 💻 Getting Started
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) v16+ (LTS recommended)
-- npm or yarn
-
-### Installation
-
-1. **Navigate to project folder:**
-   ```bash
-   cd rman-resume
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-   This installs all packages **locally** (no internet needed after first install).
-
-3. **Start development server:**
-   ```bash
-   npm run dev
-   ```
-   - Opens at `http://localhost:5173`
-   - Hot reload enabled (changes show instantly)
-   - Fully offline capable once dependencies are installed
-
-4. **Open in browser:**
-   - Go to `http://localhost:5173`
-   - Toggle dark mode with moon icon
-   - Print/PDF with printer icon
-
-## 🏗️ Building for Production
-
-### Build the Project
-
-```bash
+```sh
+npm ci
+npm run dev
 npm run build
+npm run preview
 ```
 
-This creates a `dist/` folder with:
-- Optimized HTML, CSS, JS
-- All assets bundled
-- **No external dependencies** - completely self-contained
+The production output is `dist/`. There is no backend, account, API key, or runtime service. Assets use relative paths, including on GitHub Pages repository subpaths. Fonts are local system fonts; no third-party font requests.
 
-### Output Structure (dist folder)
-```
-dist/
-├── index.html           # Main HTML file
-├── assets/
-│   ├── index-HASH.js    # Minified JavaScript
-│   └── index-HASH.css   # Minified CSS
-```
+## Content and design
 
-## 🌐 Deploying to Apache/PHP Hosting (No Node.js)
+- `src/data.js`: shared experience and discipline content; screen and print use the same records.
+- `src/App.jsx`: page, interactions, and complete print résumé.
+- `src/Sculpture.jsx`: Canvas 2D projection of an extruded 3D point cloud sampled from the original logo PNG, with three depth/color styles and pointer interaction. No WebGL requirement.
+- `src/index.css`: responsive visual system and A4 print styling.
+- `public/profile.jpg`: original profile photograph.
+- `public/rman-logo.png`: supplied transparent RmaN logo, shared by the web, print, favicon, and 3D sculpture. Print uses a CSS black-ink treatment.
+- `src/brand.js`: shared logo URL and GitHub / Instagram profile links.
 
-### Step 1: Build locally
-```bash
-npm run build
-```
+Experience filters only change the screen. Printing always includes all eight roles and full descriptions. Use **Print résumé** or the browser print command, choose A4, scale 100%, and disable browser headers/footers. Background graphics are optional. Print remains legible without them.
 
-### Step 2: Upload to hosting
+Motion respects the system reduced-motion setting. The sculpture can be paused manually; it stops rendering while outside the viewport or while the tab is hidden. All essential controls are keyboard accessible. Artwork is decorative and contains no résumé information.
 
-Copy **everything inside the `dist/` folder** to your web hosting:
+## Static hosting
 
-**Option A: Using FTP/SFTP**
-1. Connect via FTP client (FileZilla, WinSCP, etc.)
-2. Navigate to your public_html or www folder
-3. Upload all files from `dist/` folder
+### GitHub Pages
 
-**Option B: Using cPanel File Manager**
-1. Log into cPanel
-2. Go to File Manager → public_html
-3. Upload the contents of `dist/` folder
+The included `.github/workflows/deploy.yml` builds and publishes `dist/` on pushes to `main`, or through a manual workflow run. In the repository's **Settings → Pages**, choose **GitHub Actions** as the source. If the default branch differs, update the workflow branch. Push/merge this redesign when ready to publish.
 
-**Option C: Using SSH (if available)**
-```bash
-scp -r dist/* user@your-host.com:~/public_html/
-```
+### Vercel or Cloudflare Pages
 
-### Step 3: Configure Apache (if needed)
+Import the repository as a Vite project, choose Node.js 22, build with `npm run build`, and publish the `dist` directory. No environment variables or server functions are needed. Use the hosting provider's assigned domain or connect your own domain.
 
-Create `.htaccess` in your public_html:
+Deployment is prepared but no remote deployment is performed by local development commands. Provider account settings and free-tier eligibility are controlled by the hosting provider.
 
-```apache
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
-```
-
-This ensures single-page app routing works correctly.
-
-### Step 4: Access your resume
-
-Visit: `https://your-domain.com/` 
-
-✅ Your resume is now live!
-
-## 📝 Customizing Your Resume
-
-Edit `src/App.jsx`:
-- Change contact info in `<ContactItem>`
-- Update experience in `<ExperienceItem>`
-- Modify skills in `<SkillTag>`
-- Change colors via Tailwind classes
-
-Then rebuild:
-```bash
-npm run build
-```
-
-## 🖼️ Adding a Profile Photo
-
-In `src/App.jsx`, replace:
-```jsx
-<span className="text-4xl font-bold text-gray-400">AJ</span>
-```
-
-With:
-```jsx
-<img src="/profile.jpg" alt="Arman" className="w-full h-full object-cover" />
-```
-
-Add image to `public/profile.jpg` folder.
-
-## 📦 Dependencies Explained
-
-```json
-{
-  "react": "^18.2.0",           // UI framework
-  "react-dom": "^18.2.0",       // React DOM renderer
-  "lucide-react": "^0.308.0"    // Icon library (all bundled)
-}
-```
-
-All bundled in `dist/` - **no CDN calls needed**.
-
-## 🚀 Performance
-
-- **First Load:** ~50-100KB gzipped
-- **No external requests** after first load
-- **Mobile Optimized:** Responsive from 320px
-- **Print Optimized:** Perfect A4 PDF export
-
-## 🎨 Customization Tips
-
-### Change color scheme
-Edit Tailwind classes in `src/App.jsx`:
-- `bg-blue-600` → Change to `bg-green-600`, `bg-purple-600`, etc.
-- `text-slate-900` → Other color variants
-
-### Disable dark mode button
-Remove from `src/App.jsx`:
-```jsx
-<button onClick={() => setDarkMode(!darkMode)}>...</button>
-```
-
-### Change font
-Add to `tailwind.config.js`:
-```js
-theme: {
-  extend: {
-    fontFamily: {
-      sans: ['Poppins', 'sans-serif'],
-    }
-  }
-}
-```
-
-## ✅ Testing Before Deploy
-
-1. Build locally: `npm run build`
-2. Preview: `npm run preview`
-3. Open DevTools (F12)
-4. Test print: Press Ctrl+P
-5. Check dark mode toggle
-6. Test on mobile (F12 → toggle device toolbar)
-
-## 🐛 Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| npm install fails | Update Node.js to latest LTS |
-| Port 5173 in use | `npm run dev -- --port 5174` |
-| dist folder not created | Run `npm run build` |
-| Upload to hosting fails | Check file permissions, use SCP |
-
-## 📞 Support
-
-For issues with the build process, see Vite docs: https://vitejs.dev/
-
----
-
-**Built with ❤️ using React, Vite & Tailwind CSS**
+Hosting references: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite), [Cloudflare Pages build configuration](https://developers.cloudflare.com/pages/configuration/build-configuration/).
