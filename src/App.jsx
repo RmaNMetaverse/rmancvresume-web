@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, ArrowDown, Printer, Pause, Play, Code2, Orbit, AudioLines, Mail, MapPin, Linkedin, Youtube, Github, Instagram, Check, Copy } from 'lucide-react';
 import Sculpture from './Sculpture';
 import { logoUrl, socialProfiles } from './brand';
@@ -24,13 +24,13 @@ function PrintResume() {
 export default function App() {
   const [filter, setFilter] = useState(filters[0]);
   const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [mode, setMode] = useState(0);
-  const [discovered, setDiscovered] = useState([0]);
   const [copied, setCopied] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const progressRef = useRef(null);
   const [active, setActive] = useState('about');
   useEffect(() => {
-    const scroll = () => setProgress(window.scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight));
+    const scroll = () => {
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${window.scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight)})`;
+    };
     window.addEventListener('scroll', scroll, {
       passive: true
     });
@@ -46,10 +46,6 @@ export default function App() {
       observer.disconnect();
     };
   }, []);
-  const changeMode = next => {
-    setMode(next);
-    setDiscovered(old => [...new Set([...old, next])]);
-  };
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(email);
@@ -61,14 +57,12 @@ export default function App() {
   }
   return <><div className={`site ${paused ? 'motion-paused' : ''}`}>
     <a className="skip-link" href="#experience">Skip to experience</a>
-    <div className="scroll-progress" style={{
-        transform: `scaleX(${progress})`
-      }} />
+    <div className="scroll-progress" ref={progressRef} />
     <header className="navigation"><a className="wordmark" href="#about" aria-label="RmaN, back to top"><img className="brand-logo" src={logoUrl} alt="RmaN logo" /><span className="wordmark-caption">ART / CODE / EXPERIENCE</span></a><nav aria-label="Main navigation">{[['about', 'About'], ['experience', 'Experience'], ['practice', 'Practice'], ['contact', 'Contact']].map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined}>{label}</a>)}</nav><button className="nav-print" onClick={() => window.print()}><Printer size={15} /><span>Print résumé</span><ArrowUpRight size={14} /></button></header>
     <main>
       <section id="about" className="about-section wrap section-space" aria-labelledby="human-heading"><div className="portrait"><img src={`${import.meta.env.BASE_URL}profile.jpg`} alt="Arman Jangmiri" fetchPriority="high" /><span>THE HUMAN BEHIND THE SYSTEMS ↗</span></div><div className="about-copy"><div className="eyebrow">01 / ALWAYS EXPLORING</div><p className="profile-name">ARMAN JANGMIRI / CREATIVE TECHNOLOGIST</p><h2 id="human-heading">Curiosity is<br />my <span className="serif">operating system.</span></h2><p>I’m fascinated by the place where modern technology meets modern art. Whether I’m creating an interactive world, debugging a tool, writing a guide, or shaping a sound, I’m looking for new ways to turn an idea into something people can experience.</p><div className="about-facts"><div><h3>LANGUAGES</h3><p>Farsi <span>(native)</span> · English · German<br />Turkish</p></div><div><h3>OUTSIDE THE WORK</h3><p>Technology · Science · Gaming<br />Cinema · Electronic music</p></div></div></div></section>
       <section id="creative" className="hero wrap"><div className="hero-copy"><div className="eyebrow"><span className="status-dot" /> BETWEEN ART & TECHNOLOGY</div><h1>Creative mind.<br />Technical <span className="serif">soul.</span></h1><div className="intro"><span className="intro-rule" /><p>I’m <strong>Arman Jangmiri</strong>, a creative technologist.<br />I build the systems, worlds, and experiences<br className="desktop-break" /> where imagination becomes interactive.</p></div><div className="hero-actions"><a href="#experience" className="button primary">Explore my experience <ArrowDown size={17} /></a><a href={`mailto:${email}`} className="text-link">Let’s connect <ArrowUpRight size={17} /></a></div><div className="hero-footnote"><MapPin size={13} /> TEHRAN, IRAN <span>·</span> WORKING ACROSS DISCIPLINES</div></div>
-      <div className="experiment"><div className="experiment-top"><span>EXPERIMENT 001 / EXTRUDED IDENTITY</span><span className="live-label"><i /> LIVE</span></div><div className="sculpture"><div className="orbit-ring ring-one" /><div className="orbit-ring ring-two" /><Sculpture paused={paused} mode={mode} onShift={() => changeMode((mode + 1) % 3)} /><span className="axis axis-top">Y +</span><span className="axis axis-bottom">X +</span><div className="sculpture-caption"><span>FORM {String(mode + 1).padStart(2, '0')}</span><strong>{['Identity', 'Relief', 'Ultraviolet'][mode]}</strong></div></div><div className="experiment-controls"><div className="shape-buttons" role="group" aria-label="Logo sculpture style">{['01', '02', '03'].map((n, i) => <button key={n} aria-label={`Show form ${n}`} aria-pressed={mode === i} onClick={() => changeMode(i)}>{n}</button>)}</div><span className="experiment-hint" aria-live="polite">{discovered.length === 3 ? 'ALL FORMS DISCOVERED ✓' : 'MOVE TO EXPLORE · CLICK TO SHIFT'}</span><button className="icon-button" aria-label={paused ? 'Resume motion' : 'Pause motion'} onClick={() => setPaused(!paused)}>{paused ? <Play size={16} /> : <Pause size={16} />}</button></div></div>
+      <div className="experiment"><div className="experiment-top"><span>EXPERIMENT 001 / EXTRUDED IDENTITY</span><span className="live-label"><i /> LIVE</span></div><div className="sculpture"><div className="orbit-ring ring-one" /><div className="orbit-ring ring-two" /><Sculpture paused={paused} /><span className="axis axis-top">Y +</span><span className="axis axis-bottom">X +</span><div className="sculpture-caption"><span>FORM 02</span><strong>Relief</strong></div></div><div className="experiment-controls"><span className="experiment-hint">DRAG TO ROTATE · MOUSE OR TOUCH</span><button className="icon-button" aria-label={paused ? 'Resume motion' : 'Pause motion'} onClick={() => setPaused(!paused)}>{paused ? <Play size={16} /> : <Pause size={16} />}</button></div></div>
       <div className="hero-bottom"><span>ENGINEER BY LOGIC. ARTIST BY INSTINCT.</span><a href="#experience">SCROLL TO DISCOVER <ArrowDown size={14} /></a></div></section>
       <div className="discipline-strip" aria-label="Disciplines"><span>CREATIVE DEVELOPMENT</span><i>✳</i><span>REAL-TIME 3D</span><i>✳</i><span>VIRTUAL PRODUCTION</span><i>✳</i><span>GENERATIVE MEDIA</span><i>✳</i><span>SOUND DESIGN</span></div>
 
