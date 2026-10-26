@@ -4,7 +4,7 @@ import Sculpture from './Sculpture';
 import { logoUrl, socialProfiles } from './brand';
 const socialIcons = { github: Github, instagram: Instagram };
 import { experience, disciplines } from './data';
-const email = 'RmaN.Metaverse@Gmail.com';
+const email = 'RmaN.CreaTechs@Gmail.com';
 const filters = ['All experience', 'Engineering', 'Art & media', 'Writing & support'];
 function PrintResume() {
   return <div className="print-resume">

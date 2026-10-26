@@ -376,7 +376,7 @@ Create `public_html/.htaccess`:
 **Find:**
 ```jsx
 <ContactItem icon={<Phone size={18} />} text="+989124150452" darkMode={darkMode} />
-<ContactItem icon={<Mail size={18} />} text="RmaN.Metaverse@Gmail.com" darkMode={darkMode} />
+<ContactItem icon={<Mail size={18} />} text="RmaN.CreaTechs@Gmail.com" darkMode={darkMode} />
 ```
 
 **Replace with your info:**

@@ -96,7 +96,7 @@ Copy everything from `dist/` folder to your hosting's `public_html` folder (via 
 
 3. **Change email** (find line 87):
    ```jsx
-   <ContactItem icon={<Mail size={18} />} text="RmaN.Metaverse@Gmail.com" darkMode={darkMode} />
+   <ContactItem icon={<Mail size={18} />} text="RmaN.CreaTechs@Gmail.com" darkMode={darkMode} />
    ```
    Replace with your email
 
