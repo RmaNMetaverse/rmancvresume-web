@@ -19,12 +19,12 @@ export const experience = [{
 }, {
   type: 'Art & media',
   date: '2024–2026',
-  title: 'Generative AI & content creation',
+  title: 'AI image, video & content creation',
   company: 'Moses VP / Freelance',
   location: '',
-  description: 'Exploring image and motion workflows at the intersection of generative systems and visual storytelling.',
-  details: 'ComfyUI, Higgsfield, Google Flow, and Adobe Firefly; working with models including Seedance, Veo, and Kling.',
-  tags: ['ComfyUI', 'Generative media', 'AI workflows']
+  description: 'Creating AI-assisted images, video, and visual content for the Moses Project and freelance projects, combining generative tools with visual storytelling.',
+  details: 'Online platforms: Higgsfield, Comfy Cloud, and Google Flow. Local workflows: ComfyUI. Also experienced with Adobe Firefly and generative video models including Seedance, Veo, and Kling.',
+  tags: ['AI image & video', 'ComfyUI', 'Content creation']
 }, {
   type: 'Writing & support',
   date: '2017–2018 & 2026',
@@ -49,7 +49,7 @@ export const experience = [{
   title: '3D render artist & AI artist',
   company: 'Freelance / Personal',
   location: '',
-  description: 'Abstract 3D artwork and renders for personal projects, freelance clients, and NFTs using Cinema 4D and Blender. AI artwork and video with ComfyUI and online tools.',
+  description: 'Abstract 3D artwork and renders for personal projects, freelance clients, and NFTs using Cinema 4D and Blender. AI-generated imagery and video for freelance and personal projects using ComfyUI and online platforms.',
   details: '',
   tags: ['Blender', 'Cinema 4D', 'Abstract art']
 }, {
