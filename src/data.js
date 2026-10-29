@@ -23,8 +23,8 @@ export const experience = [{
   company: 'Moses VP / Freelance',
   location: '',
   description: 'Creating AI-assisted images, video, and visual content for the Moses Project and freelance projects, combining generative tools with visual storytelling.',
-  details: 'Online platforms: Higgsfield, Comfy Cloud, and Google Flow. Local workflows: ComfyUI. Also experienced with Adobe Firefly and generative video models including Seedance, Veo, and Kling.',
-  tags: ['AI image & video', 'ComfyUI', 'Content creation']
+  details: 'Online platforms: Higgsfield, Comfy Cloud, and Google Flow. Local workflows: ComfyUI. Also experienced with Adobe Firefly and generative video models including Seedance, Veo, and Kling. Video editing and post-production in DaVinci Resolve and Adobe Premiere Pro, with introductory familiarity with After Effects for basic motion graphics.',
+  tags: ['AI image & video', 'Video editing', 'Content creation']
 }, {
   type: 'Writing & support',
   date: '2017–2018 & 2026',
