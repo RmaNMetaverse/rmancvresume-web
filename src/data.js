@@ -3,7 +3,7 @@ export const experience = [{
   date: '2013–2017 & 2026',
   title: 'Web app development & web design',
   company: 'itdprose / Moses VP',
-  location: 'Tehran, Iran',
+  location: '',
   description: 'Building across the stack: web interfaces, internal tools, databases, and the Linux infrastructure that keeps them running.',
   details: 'Front end: JavaScript, jQuery, Tailwind, Three.js, WordPress. Back end: Node.js, Express, PHP, Nginx. Data: Oracle / PL SQL, PostgreSQL, MySQL, SQLite. Debian-based Linux administration and agentic development with Claude Code, Codex, and Antigravity.',
   tags: ['Full-stack development', 'Linux / Sysadmin', 'Agentic development']
@@ -12,7 +12,7 @@ export const experience = [{
   date: '2022–2026',
   title: 'Unreal Engine virtual production',
   company: 'IRIB / VCast / RASTAR',
-  location: 'Tehran, Iran',
+  location: '',
   description: 'Connecting physical cameras and digital worlds for LED-wall and green-screen virtual production.',
   details: 'ICVFX technician on the Moses Project, live camera tracking with Mo-Sys, and custom Unreal Engine Blueprints and tools. Green-screen virtual production technician at RASTAR, setting up its first fully green-screen virtual production studio.',
   tags: ['Unreal Engine', 'ICVFX', 'Mo-Sys tracking']
@@ -39,7 +39,7 @@ export const experience = [{
   date: '2022–2023',
   title: 'Unreal Engine 3D artist',
   company: 'VCast',
-  location: 'Tehran, Iran',
+  location: '',
   description: 'Environment design, texturing, custom materials, lighting, and rendering for Unreal Engine short cinematics and television series.',
   details: '',
   tags: ['Environment design', 'Lighting', 'Real-time rendering']

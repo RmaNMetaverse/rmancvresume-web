@@ -428,7 +428,7 @@ Create `public_html/.htaccess`:
 <ExperienceItem 
   year="2022 - 2026"
   title="Unreal Engine Virtual Production"
-  company="@IRIB, @VCast, @RASTAR | Tehran, Iran"
+  company="@IRIB, @VCast, @RASTAR"
   description={<>...</>}
   darkMode={darkMode}
 />
