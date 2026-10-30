@@ -58,9 +58,9 @@ export const experience = [{
   title: 'Music producer & sound designer',
   company: 'Iran Novin',
   location: '',
-  description: 'Custom music and sound design for visual media: logo animation, motion graphics, and television and radio advertising.',
-  details: '',
-  tags: ['Sound design', 'Music production', 'Visual media']
+  description: 'Music production and sound design for visual media, including motion graphics, commercials, social media content, and video games.',
+  details: 'Specialty in immersive 3D audio, including ambisonics and binaural sound. Interactive audio implementation with FMOD and Unreal Engine MetaSounds.',
+  tags: ['Sound design', 'Music production', 'Visual media', '3D audio', 'Ambisonics & binaural', 'FMOD / MetaSounds']
 }, {
   type: 'Art & media',
   date: '2014–2022',
