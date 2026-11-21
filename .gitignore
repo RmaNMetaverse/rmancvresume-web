@@ -6,3 +6,7 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+dist/
+dist/index.html
+dist/assets/index-w-2K4mzg.js
+dist/assets/index-DGwaRmiE.css
